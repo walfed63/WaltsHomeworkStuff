@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script type="text/javascript">
+      const data = [
+        {name: 'Azat',
+        balance: 1000,
+        email: 'hi@azat.co'},
+        {name: 'John',
+        balance: 1000,
+        email: 'john@pineappleseed.me'},
+        {name: 'Bob',
+        balance: 1000,
+        email: 'bob@bob.com'},
+      ]
+
+      class UserTable extends React.Component {
+        render() {
+          const rows = this.props.users.map((user, index)=>{
+            return React.createElement(UserRow, {user: user, key: index})})
+          return React.createElement('table', {}, 
+
+            React.createElement('thead', {}, 
+              React.createElement('tr', null, 
+                React.createElement('th', null, 'Name'),
+                React.createElement('th', null, 'Balance'),
+                React.createElement('th', null, 'Email')
+                )),
+            React.createElement('tbody', {}, rows))
+
+        }
+      }
+      class UserRow extends React.Component {
+        render() {
+          return React.createElement('tr', {}, 
+              React.createElement('td', {}, this.props.user.name),
+              React.createElement('td', {}, this.props.user.balance),
+              React.createElement('td', {}, this.props.user.email)
+            )          
+        }
+      }
+      ReactDOM.render(
+        React.createElement(UserTable, {users: data}),
+        document.getElementById('content')
+      )
+    </script>
+  </body>
+</html>

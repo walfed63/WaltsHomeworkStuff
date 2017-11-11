@@ -1,0 +1,12 @@
+curl -H "Content-Type: application/json" -X POST -d '{"text": "good night", "name":"Irene"}'  "http://localhost:3000/messages" 
+curl -H 'Content-Type: application/json' -X PUT -d '{"balance": 200, "name": "savings"}'  "http://localhost:3000/messages/0" 
+curl "http://localhost:3000/messages" 
+curl -X DELETE "http://localhost:3000/messages/0" 
+ localhost:3000/messages/0  '{"text": "hello", "name": "John"}' 
+
+
+//* Not CURL commands
+
+sudo docker exec -it 2c65a3e2201e /opt/mssql-tools/bin/sqlcmd \
+   -S localhost -U SA -P '          ' \
+   -Q 'ALTER LOGIN SA WITH PASSWORD="<$Jessica029>"'

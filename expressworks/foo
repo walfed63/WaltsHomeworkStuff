@@ -1,0 +1,19 @@
+docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=sim0ne42' -p 1433:1433 -d microsoft/mssql-server-linux
+
+
+sqlcmd -S 127.0.0.1 -U sa -P sim0ne42
+1> # You're connected! Type your T-SQL statements here. Use the keyword 'GO' to execute each batch of statements.
+
+sqlcmd -S 127.0.0.1 -U sa -P sim0ne42 -Q "CREATE DATABASE SampleDB;"
+
+
+sudo docker pull microsoft/mssql-server-linux:2017-latest
+docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=yourStrong(!)Password' -p 1433:1433 -d microsoft/mssql-server-linux
+
+
+brew tap microsoft/mssql-release https://github.com/Microsoft/homebrew-mssql-release
+brew update
+ACCEPT_EULA=y brew install --no-sandbox msodbcsql mssql-tools
+
+sqlcmd -S -U sa -P your_password
+

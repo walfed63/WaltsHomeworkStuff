@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple React Hello World Example</title>    
+   <script src=“https://unpkg.com/react@16/umd/react.development.js“></script>
+    <script src=“https://unpkg.com/react-dom@16/umd/react-dom.development.js”></script>
+  </head>
+  <body>
+    <div id=“content”>
+      Nothing to look at here now.
+    </div>
+    <script type=“text/javascript”>
+
+     class List extends React.Component {
+        render() {
+          const attributes = { style: {color: ‘blue’}}
+          console.log(this.props.names)
+          const elements = this.props.names.map (        
+            
+         //This builds the list items using the Map method to walk through the array
+          //Each iteraiton calls the List Item function first, to build a container
+          //This iteratively sticks the values, in order from the origial input array into
+          //an ‘li’ container that already has a number plugged in from the value of this.props.name
+            function (name, index, array) {
+              return React.createElement(ListItem, {name: name})
+            },
+          )
+
+         //this creates the ‘ol’ container that List will get plugged into
+          return React.createElement(‘ol’,
+            attributes,
+            elements)
+        }
+      }
+
+     class ListItem extends React.Component {
+        render() {
+          const style = {fontSize: 24, fontFamily: ‘Times’}
+          return React.createElement(‘li’, {style: style}, this.props.name)
+        }
+      }
+
+     const data = [‘Azat’, ‘Rob’, ‘Patrick’, ‘Laura’]
+      ReactDOM.render(
+        //this actually starts the render, builds the content
+        React.createElement(List, {names: data}),
+
+       //and sends it here
+        document.getElementById(‘content’)
+      )
+    
+   </script>
+  </body>
+</html>
