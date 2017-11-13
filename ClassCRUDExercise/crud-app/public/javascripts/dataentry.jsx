@@ -7,7 +7,12 @@ const Button= require('./button.jsx')
 class DataEntry extends React.Component {
       constructor(props) {
       super(props)
-      this.state = {messages: []}
+      this.state = {
+        messages: props.messages || [],
+        name: 'Walt', 
+        text: ''
+      }
+     // this.state = {messages: []}
       this.handleUsernameChange = this.handleUsernameChange.bind(this)
       this.handleTextChange = this.handleTextChange.bind(this)
       this.saveMessage = this.saveMessage.bind(this)
@@ -99,12 +104,13 @@ class DataEntry extends React.Component {
        <th width="400">ID</th>
      </tr>
     </thead>
-    <tbody>
+    <tbody> 
+    {(this.state.messages.length==0)?<tr><td><h2>Loading...</h2></td></tr>:false}     
     {this.state.messages.map((message, index)=>(
      <tr key={index}>
        <td>{message.text}</td>
        <td>{message.name}</td>
-       <td>{message._id}</td>
+       <td>{message._id.toString()}</td>
      </tr>   
       ))}     
    </tbody>

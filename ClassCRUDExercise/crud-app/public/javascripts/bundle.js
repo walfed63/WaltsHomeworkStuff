@@ -1620,11 +1620,10 @@ module.exports = Cancel;
 console.log('hello from jsx');
 const React = __webpack_require__(3);
 const ReactDOM = __webpack_require__(25);
+
 const DataEntry = __webpack_require__(34);
 
-ReactDOM.render(
-// <h1>test for JSX and react preset</h1>,
-React.createElement(DataEntry, null), document.getElementById('content'));
+ReactDOM.render(React.createElement(DataEntry, { messages: window.__myDataEntry }), document.getElementById('content'));
 
 /***/ }),
 /* 22 */
@@ -18895,8 +18894,12 @@ const Button = __webpack_require__(54);
 class DataEntry extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { messages: [] };
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.state = {
+      messages: props.messages || [],
+      name: 'Walt',
+      text: ''
+      // this.state = {messages: []}
+    };this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
     this.saveMessage = this.saveMessage.bind(this);
     this.deleteMessage = this.deleteMessage.bind(this);
@@ -19010,6 +19013,19 @@ class DataEntry extends React.Component {
         React.createElement(
           'tbody',
           null,
+          this.state.messages.length == 0 ? React.createElement(
+            'tr',
+            null,
+            React.createElement(
+              'td',
+              null,
+              React.createElement(
+                'h2',
+                null,
+                'Loading...'
+              )
+            )
+          ) : false,
           this.state.messages.map((message, index) => React.createElement(
             'tr',
             { key: index },
@@ -19026,7 +19042,7 @@ class DataEntry extends React.Component {
             React.createElement(
               'td',
               null,
-              message._id
+              message._id.toString()
             )
           ))
         )
