@@ -105,16 +105,15 @@ class DataEntry extends React.Component {
        <td>{message.text}</td>
        <td>{message.name}</td>
        <td>{message._id}</td>
-      </tr>   
-      ))}
-     
+     </tr>   
+      ))}     
    </tbody>
    </table>
        <div className="btn-group btn-cta small">
            <button className="active margin-left-medium" >Get</button>
-           <button className="active margin-left-medium" onClick={this.saveMessage}>Put(edit) </button>
+           <button className="active margin-left-medium"  onClick={this.saveMessage}>Put(edit) </button>
            <button className="active margin-left-medium"  onClick={this.saveMessage}>Post</button>
-           <button className="active margin-left-medium"  onClick={()=>{                                
+           <button className="active margin-left-medium"  onClick={()=>{                       
                                   this.deleteMessage(message._id, index)
                                   }}>Delete </button>        
        </div>
